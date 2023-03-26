@@ -1,0 +1,32 @@
+{
+    "peeps": [
+      {
+        "_id": "6389d9389dae7c4d49a4a83f",
+        "firstName": "Anne",
+        "lastName": "Stuart",
+        "peepContent": "peep 1",
+        "peepCreatedTime": "Fri, 02 Dec 2022 10:53:43 GMT"
+      },
+      {
+        "_id": "6389daa19dae7c4d49a4a841",
+        "firstName": "Emily",
+        "lastName": "Gomez",
+        "peepContent": "peep 2",
+        "peepCreatedTime": "Fri, 02 Dec 2022 10:59:44 GMT"
+      },
+      {
+        "_id": "6389db8ca6f4fe0cad7c954c",
+        "firstName": "Wil",
+        "lastName": "Smith",
+        "peepContent": "peep 3",
+        "peepCreatedTime": "Fri, 02 Dec 2022 11:03:40 GMT"
+      },
+      {
+        "_id": "6389df170d9dec5c64589c1e",
+        "firstName": "Mary",
+        "lastName": "Ford",
+        "peepContent": "peep 4",
+        "peepCreatedTime": "Fri, 02 Dec 2022 11:18:46 GMT"
+      }
+    ]
+  }
