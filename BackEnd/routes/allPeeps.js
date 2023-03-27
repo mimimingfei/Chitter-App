@@ -7,10 +7,16 @@ export const router = express.Router();
 router.get('/', async (req, res) => {
     try {
       const peeps = await Peep.find().sort({ peepCreatedTime: -1 });
-      res.status(200).json(peeps);
+      res.status(200).send(peeps);
     } catch (err) {
       console.error(err);
       res.status(500).send('Server Error');
     }
   });
 
+router.get('/', async (req, res) => {
+  try{
+    const peeps = await Peep
+  }
+  
+});

@@ -10,18 +10,12 @@ router.post('/',[
             check('peepContent').exists().notEmpty(),
             check('dateAndTimePosted').exists().notEmpty()
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: "Adding peep failed"});
-  }
-
   const newPeep = new Peep(req.body);
     try { 
         await newPeep.save();
         res.status(201).json({message: "Peep successfully added"});
       } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
+        res.status(400).json({ error: 'Adding peep failed'});
       }
     });
 

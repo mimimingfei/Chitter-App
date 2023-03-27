@@ -15,8 +15,8 @@ dbConnect();
 
 app.use('/signup', signup);
 app.use('/login', login);
-app.use('/addPeep', addPeep);
-app.use('/allPeeps', allPeeps);
+app.use('/', addPeep);
+app.use('/', allPeeps);
 
 app.listen(process.env.PORT, () =>
 	console.log(`App is listening at http://${process.env.HOST}:${process.env.PORT}`)

@@ -1,8 +1,10 @@
 import { Form, Button } from "react-bootstrap";
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "axios";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -20,6 +22,7 @@ export default function Signup() {
 
   const handleSignup = async e => {
     e.preventDefault();
+    try{
     const res = await axios.post('http://localhost:4000/signup', user);
     setUser({
         ...user,
@@ -28,7 +31,12 @@ export default function Signup() {
         email: '',
         password: ''
     });
-  };
+    navigate('/');
+  } catch(error){
+    console.error('Sign up failed:', error);
+    alert("Sign up failed");
+  }
+}
 
   return (
     <div className='d-flex justify-content-center align-items-center my-5'>
@@ -45,7 +53,7 @@ export default function Signup() {
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail"className="my-4">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email Address</Form.Label>
           <Form.Control type="email" name="email" value={user.email} onChange={handleChange} placeholder="Enter Email" />
         </Form.Group>
 
@@ -57,7 +65,9 @@ export default function Signup() {
         <Button variant="primary" type="submit" className="my-4" onClick={handleSignup}>
           Sign up
         </Button>
+        <p>Already a user?<Link to="/login">Log in</Link></p>
       </Form>
+      
     </div>
   );
 }
