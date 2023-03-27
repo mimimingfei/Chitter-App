@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import app from '../server.js';
 import User from '../models/user.js';
 import mockUsersData from '../mockUsersData.json'assert { type: "json" };
-const mockUsers = mockUsersData.user 
+const mockUsers = mockUsersData.user
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -40,7 +40,6 @@ describe('user database requests tests', () => {
         expect(res.body).to.be.an(`object`);
         expect(res.body).to.have.property('message').equal('User created successfully');
     });
-
 
     it('POST /signup, should return 400 if email already exists', async () => {
         const mockUser = {
@@ -82,7 +81,7 @@ describe('user database requests tests', () => {
             .send(mockUser)
         expect(res).to.have.status(401);
         expect(res.body).to.be.an(`object`);
-        expect(res.body).to.have.property('error').equal('Invalid email or password');
+        expect(res.body).to.have.property('error').equal('Invalid email');
     });
 
 
@@ -96,6 +95,6 @@ describe('user database requests tests', () => {
             .send(mockUser)
         expect(res).to.have.status(401);
         expect(res.body).to.be.an(`object`);
-        expect(res.body).to.have.property('error').equal('Invalid email or password');
+        expect(res.body).to.have.property('error').equal('Invalid password');
     });
 });

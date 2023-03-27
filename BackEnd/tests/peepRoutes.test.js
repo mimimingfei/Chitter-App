@@ -7,7 +7,8 @@ import mockPeepsData from '../mockPeepsData.json'assert { type: "json" };
 const mockPeeps = mockPeepsData.peep
 
 chai.use(chaiHttp);
-describe.skip('peep requests tests',()=>{
+describe('peep requests tests', () => {
+    //delete and insert data into database
     beforeEach(async () => {
         await Peep.deleteMany()
             .then(() => console.log(`Peeps collection cleared`))
@@ -22,53 +23,36 @@ describe.skip('peep requests tests',()=>{
                 console.log(`Error inserting`);
                 throw new Error();
             });
-})
+    })
+    // peep API calls
+    it(`GET /allPeeps, should return status 200 and an array`, async () => {
+        const res = await chai.request(app)
+            .get(`/allPeeps`)
 
-it('GET /, should return status 200', async()=>{
-    const res = await chai.request(app)
-    .get(`/`)
-    expect(res).to.have.status(200);
-    expect(res.body).to.have.lengthOf(4);
-    expect(res.body).to.be.an("array");
-})
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an(`array`);
+        expect(res.body.length).to.be.eql(4);
+    });
 
-it(`GET /allPeeps, should return status 200 and an array`, async () => {
-    const res = await chai.request(server)
-        .get(`/allPeeps`)
-        .send();
+    it("POST /addPeep, should return 201 and add a new peep", async () => {
+        const res = await chai.request(app)
+            .post('/addPeep')
+            .send({
+                firstName: "Bryan",
+                lastName: "Laws",
+                peepContent: "Pet at lucas.",
+                peepCreatedTime: "2022-06-24T15:35:24Z"
+            });
+        expect(res).to.have.status(201)
+        expect(res.body).to.have.property('message').equal('Peep successfully added');
+    });
 
-    expect(res).to.have.status(200);
-    expect(res.body).to.be.an(`array`);
-    expect(res.body.length).to.be.eql(testDataArray.length);
-});
+    it("POST /addPeep, should return 400 when data is incomplete", async () => {
+        const res = await chai.request(app)
+            .post('/addPeep')
+            .send({firstName: "Bryan", peepCreatedTime: "2022-06-24T15:35:24Z" });
 
-it("POST /addPeep, should return 201 and add a new peep", async () => {
-   const mockPeep ={
-    firstName: "Bryan",
-    lastName: "Laws",
-    peepContent: "Pet at lucas.",
-    peepCreatedTime: "2022-06-24T15:35:24Z"
-   }
-   
-    const res = await chai.request(app)
-        .post('/addPeep')
-        .send({mockPeep});
-
-    expect(res).to.have.status(201)
-    expect(res.body).to.have.property('message').equal('Peep successfully added');
-});
-
-it("POST /addPeep, should return 400 when data is incomplete", async () => {
-    const mockPeep ={
-     firstName: "Bryan",
-     peepCreatedTime: "2022-06-24T15:35:24Z"
-    }
-    
-     const res = await chai.request(app)
-         .post('/addPeep')
-         .send({mockPeep});
- 
-     expect(res).to.have.status(400)
-     expect(res.body).to.have.property('error').equal('Adding peep failed');
- });
+        expect(res).to.have.status(400)
+        expect(res.body).to.have.property('error').equal('Adding peep failed');
+    });
 })
