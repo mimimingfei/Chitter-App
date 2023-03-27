@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Peep from './Peep';
+import { Form, Button } from "react-bootstrap";
 
 const AllPeeps = ({ peeps }) => {
   const [allPeeps, setAllPeeps] = useState([]);
@@ -23,7 +24,7 @@ const AllPeeps = ({ peeps }) => {
   }, [peeps]);
 
   return (
-    <div>
+    <div className='d-flex justify-content-center align-items-center my-5'>
     {allPeeps.length > 0 ? (
       allPeeps.map((peep) => (
         <Peep

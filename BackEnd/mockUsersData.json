@@ -1,0 +1,25 @@
+ {
+    "user": [
+      {
+        "firstName": "Art",
+        "lastName": "Nelson",
+        "email": "artnelson0@gamil.com",
+        "password": "$2b$08$ibvkCHF5kqZd/4CL33/AZeO4Y0ovOzeqjbKcZ.zqp7h6s/ohK2Ni6"
+      }, {
+        "firstName": "Bernard",
+        "lastName": "Ricardo",
+        "email": "bricardo1@hotmail.com",
+        "password": "$2b$08$ibvkCHF5kqZd/4CL33/AZeO4Y0ovOzeqjbKcZ.zqp7h6s/ohK2Ni6"
+      }, {
+        "firstName": "Base",
+        "lastName": "Odin",
+        "email": "baseodin2@webs.com",
+        "password": "$2b$08$ibvkCHF5kqZd/4CL33/AZeO4Y0ovOzeqjbKcZ.zqp7h6s/ohK2Ni6"
+      }, {
+        "firstName": "Susannah",
+        "lastName": "Voe",
+        "email": "svlasov4@about.com",
+        "password": "$2b$08$ibvkCHF5kqZd/4CL33/AZeO4Y0ovOzeqjbKcZ.zqp7h6s/ohK2Ni6"
+      }
+    ]
+  }

@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, waitFor } from '@testing-library/react';
 import AllPeeps from '../components/AllPeeps';
-import mockPeeps from './mockPeeps.json';
 import axios from 'axios';
 
 jest.mock('axios');
@@ -16,7 +15,7 @@ describe('AllPeeps tests', () => {
     //     });
     //   });
 
-  it('displays a message when there are no peeps', async () => {
+  it('should displays a message when there are no peeps', async () => {
     axios.get.mockResolvedValue({ data: [] });
     render(<AllPeeps />);
 

@@ -1,23 +1,24 @@
 import express from 'express';
 import Peep from '../models/peep.js'
-import { userAuth } from '../middleware/jwt.auth.js';
-
+import { check, validationResult } from 'express-validator';
 export const router = express.Router();
 
 
-router.post('/', userAuth, async (req, res) => {
-    const { firstName, lastName, peepContent } = req.body;
+router.post('/',[
+            check('firstName').exists().notEmpty(),
+            check('lastName').exists().notEmpty(),
+            check('peepContent').exists().notEmpty(),
+            check('dateAndTimePosted').exists().notEmpty()
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: "Adding peep failed"});
+  }
 
-    try {
-        const newPeep = new Peep({
-          firstName,
-          lastName,
-          peepContent,
-          peepCreatedTime: new Date().toISOString()
-        });
-    
+  const newPeep = new Peep(req.body);
+    try { 
         await newPeep.save();
-        res.json(newPeep);
+        res.status(201).json({message: "Peep successfully added"});
       } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');

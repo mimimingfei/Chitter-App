@@ -9,8 +9,4 @@ describe('AddPeep tests', () => {
     expect(screen.getByPlaceholderText('Enter peep content')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Post' })).toBeInTheDocument();
   });
-
-//   it('should call onAddPeep and reset form on submit', async () => {
-    
-//   });
 });

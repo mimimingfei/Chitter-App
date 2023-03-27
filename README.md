@@ -1,22 +1,12 @@
 Chitter Challenge
 =================
+1. Front end server runs on http://localhost:3000, to start server, open a new terminal, type "cd chitter-challenge\FrontEnd\"
+2. Run "npm install" to install all dependencies, then run "npm start" to start the server
+3. Jest testing, run "npm test" 
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or trainee, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit your work by 9:30am Monday morning
-
-Challenge:
--------
-
-As usual please start by forking this repo.
-
-We are going to write a small twitter clone that will allow users to post messages to a public wall.
-
-Good luck and let the chitter begin!
-
-Features:
--------
+4. Back end server runs on http://localhost:4000, to start server, "cd chitter-challenge\BackEnd\"
+5. Run "npm install" to install all dependencies, then run "npm start" to start the server
+6. Chai testing, run "npm test"
 
 ### Standard Acceptance Criteria
 ```

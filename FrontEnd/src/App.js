@@ -5,6 +5,7 @@ import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 import AddPeep from "./components/AddPeep.jsx";
 import AllPeeps from "./components/AllPeeps.jsx";
+import Logout from "./components/Logout.jsx";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,6 +18,7 @@ function App() {
       <Route path="/" element={<AllPeeps/>}/>
       <Route path="/signup" element={<Signup/>} />
       <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUser={setUser}/>} />
+      <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
       <Route path="/allPeeps" element={<allPeeps/>}/>
       <Route path="/addPeep"element={
           // loggedIn ? 
