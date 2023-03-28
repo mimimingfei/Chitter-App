@@ -2,8 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors'
 import dbConnect from './dbConnect.js';
-import { router as addPeep } from './routes/addPeep.js'
-import { router as allPeeps } from './routes/allPeeps.js'
+import { router as peep } from './routes/peep.js'
 import { router as signup } from './routes/signup.js'
 import { router as login } from './routes/login.js'
 
@@ -15,8 +14,7 @@ dbConnect();
 
 app.use('/signup', signup);
 app.use('/login', login);
-app.use('/', addPeep);
-app.use('/', allPeeps);
+app.use('/', peep);
 
 app.listen(process.env.PORT, () =>
 	console.log(`App is listening at http://${process.env.HOST}:${process.env.PORT}`)

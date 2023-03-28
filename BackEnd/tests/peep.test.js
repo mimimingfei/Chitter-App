@@ -25,18 +25,18 @@ describe('peep requests tests', () => {
             });
     })
     // peep API calls
-    it(`GET /allPeeps, should return status 200 and an array`, async () => {
+    it(`GET /peep, should return status 200 and an array`, async () => {
         const res = await chai.request(app)
-            .get(`/allPeeps`)
+            .get(`/`)
 
         expect(res).to.have.status(200);
         expect(res.body).to.be.an(`array`);
         expect(res.body.length).to.be.eql(4);
     });
 
-    it("POST /addPeep, should return 201 and add a new peep", async () => {
+    it("POST /peep, should return 201 and add a new peep", async () => {
         const res = await chai.request(app)
-            .post('/addPeep')
+            .post('/')
             .send({
                 firstName: "Bryan",
                 lastName: "Laws",
@@ -47,10 +47,10 @@ describe('peep requests tests', () => {
         expect(res.body).to.have.property('message').equal('Peep successfully added');
     });
 
-    it("POST /addPeep, should return 400 when data is incomplete", async () => {
+    it("POST /peep, should return 400 when data is incomplete", async () => {
         const res = await chai.request(app)
-            .post('/addPeep')
-            .send({firstName: "Bryan", peepCreatedTime: "2022-06-24T15:35:24Z" });
+            .post('/')
+            .send({ firstName: "Bryan", peepCreatedTime: "2022-06-24T15:35:24Z" });
 
         expect(res).to.have.status(400)
         expect(res.body).to.have.property('error').equal('Adding peep failed');
