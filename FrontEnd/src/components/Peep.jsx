@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 
-const Peep = ({ firstName, lastName, peepContent, peepCreatedTime }) => {
+const Peep = ({ id, firstName, lastName, peepContent, peepCreatedTime }) => {
     return (
-        <Card className="my-3">
+        <Card key={id} className="my-3">
             <Card.Body>
                 <Card.Title>{firstName+lastName}</Card.Title>
                 <Card.Text>{peepContent}</Card.Text>

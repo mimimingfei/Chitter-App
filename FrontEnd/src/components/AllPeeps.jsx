@@ -16,24 +16,22 @@ const AllPeeps = () => {
 
   useEffect(() => { getPeepsData() }, []);
 
-  const displayPeeps = allPeeps.slice(0).reverse().map((peep) => (
-    <Peep
-      key={peep.id}
-      firstName={peep.firstName}
-      lastName={peep.lastName}
-      peepContent={peep.peepContent}
-      peepCreatedTime={peep.peepCreatedTime}
-    />
-  ));
-  return (
-    <>
-      {displayPeeps.length > 0 ? (
-        <>{displayPeeps}</>
-      ) : (
-        <p>No Peeps</p>
-      )}
-    </>
-  );
+  const displayPeeps = allPeeps.length > 0
+  ? allPeeps.slice(0).reverse().map((peep) => (
+      <div key={peep.id}>
+        <Peep
+          firstName={peep.firstName}
+          lastName={peep.lastName}
+          peepContent={peep.peepContent}
+          peepCreatedTime={peep.peepCreatedTime}
+        />
+      </div>
+    ))
+  : <p>No Peeps</p>;
+
+  return displayPeeps;
+  
+
 };
 
 export default AllPeeps;

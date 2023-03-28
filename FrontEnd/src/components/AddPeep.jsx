@@ -22,7 +22,7 @@ const AddPeep = ({user}) => {
     return (
       <div className='d-flex justify-content-center align-items-center my-5'>
         <Form onSubmit={handleSubmit} className="w-50">
-        <Form.Label style={{ fontSize: '24px' }}>Add a new peep:</Form.Label>
+        <Form.Label style={{ fontSize: '24px' }}>Add a new peep</Form.Label>
         <Form.Group controlId="formBasicPeepContent"className="my-4">
           <Form.Control type="text" value={peepContent} onChange={(event) => setPeepContent(event.target.value)} placeholder="Enter peep content" />
         </Form.Group >

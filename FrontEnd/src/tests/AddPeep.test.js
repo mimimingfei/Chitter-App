@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen, fireEvent } from '@testing-library/react';
 import AddPeep from '../components/AddPeep';
+import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from "@testing-library/react";
 
-describe.skip('AddPeep tests', () => {
-  it('should render the form', () => {
-    render(<AddPeep />);
-    expect(screen.getByText('Add a new peep:')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Enter peep content')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Post' })).toBeInTheDocument();
-  });
+describe('AddPeep Test', () => {
+  test('should render form', () => {
+    render(<BrowserRouter><AddPeep /></BrowserRouter>)
+    const placeholder = screen.getByPlaceholderText('Enter peep content'); 
+    expect(placeholder).toBeInTheDocument();
+    });
 });
+

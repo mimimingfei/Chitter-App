@@ -5,6 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe('Peep Test', () => {
   it('renders the peep details correctly', () => {
     const mockPeep = {
+      id: 1,
       firstName: 'Kyle',
       lastName: 'McFadden',
       peepContent: 'peep message',
