@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Peep from './Peep';
+import Peep from './Peep/Peep';
 
 const AllPeeps = () => {
   const [allPeeps, setAllPeeps] = useState([]);

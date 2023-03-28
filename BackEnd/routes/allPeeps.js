@@ -13,10 +13,3 @@ router.get('/', async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
-
-router.get('/', async (req, res) => {
-  try{
-    const peeps = await Peep
-  }
-  
-});

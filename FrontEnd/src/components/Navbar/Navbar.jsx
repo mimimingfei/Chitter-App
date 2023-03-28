@@ -4,10 +4,10 @@ import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <>
+    <nav>
       <ul>
         <li>
-          <Link to="/addPeep">Post a peep</Link>
+          <Link to="/allPeeps">Peeps</Link>
         </li>
         <li>
           <Link to="/login">Login</Link>
@@ -16,7 +16,7 @@ const Navbar = () => {
           <Link to="/signup">Sign Up</Link>
         </li>
       </ul>
-    </>
+    </nav>
   );
 };
 

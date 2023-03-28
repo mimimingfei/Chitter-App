@@ -5,17 +5,32 @@ import Login from './components/Login.jsx';
 import AddPeep from "./components/AddPeep.jsx";
 import AllPeeps from "./components/AllPeeps.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import axios from "axios";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [peeps, setPeeps]=useState([]);
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getPeeps= async () => {
+      const peepData = await axios.get(process.env.REACT_URL);
+      const peepMap = peepData.data.map((n) => ({
+        ...n,
+      }));
+      setPeeps(peepMap);
+    };
+    getPeeps();
+  }, []);
+  
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Navbar/><AllPeeps/><AddPeep user={user}/></>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUser={setUser}/>} />
+        <Route path="/" element={<><Navbar/><AllPeeps peeps={peeps}/></>} />
+        <Route path="/signup" element={<><Navbar/><Signup/></>} />
+        <Route path="/login" element={<><Navbar/><Login setLoggedIn={setLoggedIn} setUser={setUser}/></>} />
+        <Route path="/allPeeps" element={<><Navbar/><AddPeep user={user}/><AllPeeps peeps={peeps}/></>}/>
       </Routes>
     </Router> 
 );

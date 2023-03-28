@@ -44,8 +44,7 @@ export default function Login() {
           <Form.Control type="password" value={user.password} onChange={handleChange} placeholder="Enter Password" />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="my-3" onClick={handleLogin}>
-          Log in
+         <Button variant="primary" type="submit" className="my-3" onClick={handleLogin}>Log in
         </Button>
          <p>Not a user yet? <Link to="/signup">Sign up</Link></p>
       </Form>
