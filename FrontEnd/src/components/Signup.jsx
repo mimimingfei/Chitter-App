@@ -23,7 +23,7 @@ export default function Signup() {
   const handleSignup = async e => {
     e.preventDefault();
     try{
-    const res = await axios.post('http://localhost:4000/signup', user);
+    await axios.post('http://localhost:4000/signup', user);
     setUser({
         ...user,
         firstName: '',
@@ -31,7 +31,9 @@ export default function Signup() {
         email: '',
         password: ''
     });
-    navigate('/');
+
+    alert("Sign up successful. Navigating to login page.")
+    navigate('/login');
   } catch(error){
     console.error('Sign up failed:', error);
     alert("Sign up failed");

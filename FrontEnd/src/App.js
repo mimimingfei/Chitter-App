@@ -27,10 +27,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Navbar/><AllPeeps peeps={peeps}/></>} />
+        <Route path="/" element={<><Navbar/><AddPeep user={user}/><AllPeeps peeps={peeps}/></>} />
         <Route path="/signup" element={<><Navbar/><Signup/></>} />
         <Route path="/login" element={<><Navbar/><Login setLoggedIn={setLoggedIn} setUser={setUser}/></>} />
-        <Route path="/allPeeps" element={<><Navbar/><AddPeep user={user}/><AllPeeps peeps={peeps}/></>}/>
       </Routes>
     </Router> 
 );

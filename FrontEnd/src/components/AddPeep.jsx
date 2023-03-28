@@ -1,35 +1,46 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-const AddPeep = ({user}) => {
-    const [peepContent, setPeepContent] = useState('');
-    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const res = await axios.post("http://localhost:4000/addPeep", {firstName: user.firstName, lastName: user.lastName, peepContent: peepContent});
-        setPeepContent('');
-        navigate('/');
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
 
- 
-    return (
-      <div className='d-flex justify-content-center align-items-center my-5'>
-        <Form onSubmit={handleSubmit} className="w-50">
-        <Form.Label style={{ fontSize: '24px' }}>Add a new peep</Form.Label>
-        <Form.Group controlId="formBasicPeepContent"className="my-4">
-          <Form.Control type="text" value={peepContent} onChange={(event) => setPeepContent(event.target.value)} placeholder="Enter peep content" />
-        </Form.Group >
-        <Button variant="primary" type="submit" className="my-4">Post Peep</Button>
+const AddPeep = () => {
+  const location = useLocation();
+  const [peepContent, setPeepContent] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:4000/', {
+        firstName: location.state.firstName,
+        lastName: location.state.lastName,
+        peepContent,
+        peepCreatedTime: new Date().toISOString()
+      });
+      console.log(res.data);
+      alert("Peep posted!");
+      setPeepContent('');
+    } catch (error) {
+      console.error('Peep failed:', error);
+      alert("Peep failed");
+    }
+  };
+  return (
+    <div className='d-flex justify-content-center align-items-center my-5'>
+      <Form className='w-50'>
+        <h2>Add Peep</h2>
+        <Form.Group controlId='formBasicPeep' className='my-4'>
+          <Form.Control type='text' value={peepContent} onChange={(e) => setPeepContent(e.target.value)} placeholder='Enter Peep' />
+        </Form.Group>
+
+        <Button variant='primary' type='submit' className='my-3' onClick={handleSubmit}>
+          Add Peep
+        </Button>
       </Form>
-      </div>
-    );
+    </div>
+  );
 };
 
 

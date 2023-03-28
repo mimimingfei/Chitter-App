@@ -3,11 +3,12 @@ import axios from "axios";
 import Peep from './Peep/Peep';
 
 const AllPeeps = () => {
+  
   const [allPeeps, setAllPeeps] = useState([]);
 
   const getPeepsData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/allPeeps`);
+      const res = await axios.get(`http://localhost:4000`);
       setAllPeeps(res.data);
     } catch (error) {
       console.log(error.message);
