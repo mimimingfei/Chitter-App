@@ -1,6 +1,6 @@
 import express from 'express';
 import Peep from '../models/peep.js'
-import { check, validationResult } from 'express-validator';
+import { check } from 'express-validator';
 export const router = express.Router();
 
 
@@ -8,7 +8,7 @@ router.post('/',[
             check('firstName').exists().notEmpty(),
             check('lastName').exists().notEmpty(),
             check('peepContent').exists().notEmpty(),
-            check('dateAndTimePosted').exists().notEmpty()
+            check('peepCreatedTime').exists().notEmpty()
 ], async (req, res) => {
   const newPeep = new Peep(req.body);
     try { 
