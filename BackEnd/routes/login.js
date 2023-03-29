@@ -1,4 +1,3 @@
-// import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 import express from 'express';
 import {body} from 'express-validator';
@@ -20,15 +19,7 @@ router.post('/', [
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid password' });
     }
-
-    // Create JWT
-    // const token = jwt.sign(
-    //   { userId: user._id, email: user.email },
-    //   process.env.JWT_SECRET,
-    //   { expiresIn: '24h' }
-    // );
-    // return res.status(200).json({ token });
-    return res.status(200).json({message:'Login successful'})
+    return res.status(200).json({ message: "Login successful"});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Server error' });

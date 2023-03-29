@@ -2,15 +2,16 @@ import express from 'express';
 import Peep from '../models/peep.js'
 import { check } from 'express-validator';
 export const router = express.Router();
-import { userAuth } from '../middleware/jwt.auth.js';
+// import verifyToken from '../middleware/verifyToken.js';
 
-router.post('/',[
+router.post('/', [
             check('firstName').exists().notEmpty(),
             check('lastName').exists().notEmpty(),
             check('peepContent').exists().notEmpty(),
             check('peepCreatedTime').exists().notEmpty()
 ], async (req, res) => {
-  const newPeep = new Peep(req.body);
+  const { firstName, lastName, peepContent, peepCreatedTime } = req.body;
+  const newPeep = new Peep({ firstName, lastName, peepContent, peepCreatedTime });
     try { 
         await newPeep.save();
         res.status(201).json({message: "Peep successfully added"});

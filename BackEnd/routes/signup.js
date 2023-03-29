@@ -2,6 +2,7 @@ import express from 'express';
 import {body} from 'express-validator';
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
+import jwt from 'jsonwebtoken';
 
 export const router = express.Router();
 
@@ -25,9 +26,15 @@ router.post('/', [
     password: hashedPassword,
   });
     await newUser.save();
-    return res.status(201).json({ message: 'User created successfully' });
+    const token = jwt.sign(
+  { firstName, lastName},
+  process.env.JWT_SECRET,
+  { expiresIn: '24h' }
+);
+    return res.status(201).json({ message: 'User created successfully', token});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
+
