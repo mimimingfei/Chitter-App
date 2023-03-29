@@ -5,23 +5,11 @@ import Login from './components/Login.jsx';
 import AddPeep from "./components/AddPeep.jsx";
 import AllPeeps from "./components/AllPeeps.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import axios from "axios";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [peeps, setPeeps]=useState([]);
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const getPeeps= async () => {
-      const peepData = await axios.get(process.env.REACT_URL);
-      const peepMap = peepData.data.map((n) => ({
-        ...n,
-      }));
-      setPeeps(peepMap);
-    };
-    getPeeps();
-  }, []);
   
 
   return (

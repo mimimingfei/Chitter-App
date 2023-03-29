@@ -23,7 +23,10 @@ export default function Signup() {
   const handleSignup = async e => {
     e.preventDefault();
     try{
-    await axios.post('http://localhost:4000/signup', user);
+    const res = await axios.post('http://localhost:4000/signup', user);
+    //store token
+    const token = res.data.token;
+    localStorage.setItem('token', token);
     setUser({
         ...user,
         firstName: '',

@@ -18,12 +18,12 @@ describe('AllPeeps Tests', () => {
     expect(peeps).toHaveLength(4);
   })
 
-  it('should displays a message when there are no peeps', async () => {
-    axios.get.mockResolvedValue({ data: [] });
-    await act(async () => {
-      render(<AllPeeps />);
-    });
-    const noPeep = await screen.findByText(/No Peeps/i)
-    expect(noPeep).toBeInTheDocument();
-  });
+//   it('should displays a message when there are no peeps', async () => {
+//     axios.get.mockResolvedValue({ data: [] });
+//     await act(async () => {
+//       render(<AllPeeps />);
+//     });
+//     const noPeep = await screen.findByText(/No Peeps/i)
+//     expect(noPeep).toBeInTheDocument();
+//   });
 });

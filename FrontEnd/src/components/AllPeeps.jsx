@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Peep from './Peep/Peep';
+import { Card, Col, Row } from 'react-bootstrap';
 
 const AllPeeps = () => {
-  
   const [allPeeps, setAllPeeps] = useState([]);
 
   const getPeepsData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000`);
+      const res = await axios.get(`http://localhost:4000/`);
       setAllPeeps(res.data);
     } catch (error) {
       console.log(error.message);
@@ -17,22 +16,22 @@ const AllPeeps = () => {
 
   useEffect(() => { getPeepsData() }, []);
 
-  const displayPeeps = allPeeps.length > 0
-  ? allPeeps.slice(0).reverse().map((peep) => (
-      <div key={peep.id}>
-        <Peep
-          firstName={peep.firstName}
-          lastName={peep.lastName}
-          peepContent={peep.peepContent}
-          peepCreatedTime={peep.peepCreatedTime}
-        />
-      </div>
-    ))
-  : <p>No Peeps</p>;
 
-  return displayPeeps;
-  
-
+  return (
+    <>
+      {allPeeps.map((peep) => (
+        <Card key={peep._id}>
+          <div>
+          <Card.Body className='body'>
+            <Card.Title>{peep.peepContent} </Card.Title>
+            <Card.Text className="text">{peep.firstName} {peep.lastName}</Card.Text>
+            <Card.Text className='text'>{new Date(peep.peepCreatedTime).toLocaleString()}</Card.Text>
+          </Card.Body>
+           </div>
+        </Card>
+      ))}
+    </>
+  );
 };
 
 export default AllPeeps;

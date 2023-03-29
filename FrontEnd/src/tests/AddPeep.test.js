@@ -6,7 +6,7 @@ import { render, screen } from "@testing-library/react";
 describe('AddPeep Test', () => {
   test('should render form', () => {
     render(<BrowserRouter><AddPeep /></BrowserRouter>)
-    const placeholder = screen.getByPlaceholderText('Enter peep content'); 
+    const placeholder = screen.getByPlaceholderText('Enter peep'); 
     expect(placeholder).toBeInTheDocument();
     });
 });

@@ -21,8 +21,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:4000/login', { email: user.email, password: user.password });
-      console.log(res.data)
+      const res = await axios.post('http://localhost:4000/login', user);
       setUser({ email: ``, password: `` });
       alert("Login successful. You can now post peeps!")
       navigate('/')
