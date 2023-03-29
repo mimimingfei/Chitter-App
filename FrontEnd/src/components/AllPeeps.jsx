@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Col, Row } from 'react-bootstrap';
 
-const AllPeeps = () => {
+const AllPeeps = ({peeps}) => {
+  useEffect(() => {
+    getPeepsData();
+  }, []);
+
   const [allPeeps, setAllPeeps] = useState([]);
 
   const getPeepsData = async () => {
@@ -13,8 +17,6 @@ const AllPeeps = () => {
       console.log(error.message);
     }
   };
-
-  useEffect(() => { getPeepsData() }, []);
 
 
   return (

@@ -49,7 +49,6 @@ export default function Login() {
         </Button>
          <p>Not a user yet? <Link to="/signup">Sign up</Link></p>
       </Form>
-     
     </div>
   );
 }

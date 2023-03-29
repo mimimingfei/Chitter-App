@@ -5,21 +5,9 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 
-const AddPeep = () => {
+const AddPeep = ({updatePeeps}) => {
+  const navigate = useNavigate();
   const [peepContent, setPeepContent] = useState('');
-  const [peeps, setPeeps] = useState([]);
-
-  useEffect(() => {
-    const getPeeps = async () => {
-      try {
-        const res = await axios.get('http://localhost:4000');
-        setPeeps(res.data);
-      } catch (error) {
-        console.error('Failed to get peeps:', error);
-      }
-    };
-    getPeeps();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,11 +24,15 @@ const AddPeep = () => {
       console.log(res.data);
       alert("Peep posted!");
       setPeepContent('');
+      updatePeeps();
+      navigate('/')
     } catch (error) {
       console.error('Peep failed:', error);
       alert("Peep failed");
     }
   };
+
+
   return (
     <div className='d-flex justify-content-center align-items-center my-5'>
       <Form className='w-50'>
