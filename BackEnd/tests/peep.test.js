@@ -27,7 +27,7 @@ describe('peep requests tests', () => {
     // peep API calls
     it(`GET /peep, should return status 200 and an array`, async () => {
         const res = await chai.request(app)
-            .get(`/`)
+            .get(`/peep`)
 
         expect(res).to.have.status(200);
         expect(res.body).to.be.an(`array`);
@@ -36,7 +36,7 @@ describe('peep requests tests', () => {
 
     it("POST /peep, should return 201 and add a new peep", async () => {
         const res = await chai.request(app)
-            .post('/')
+            .post('/peep')
             .send({
                 firstName: "Bryan",
                 lastName: "Laws",
@@ -49,7 +49,7 @@ describe('peep requests tests', () => {
 
     it("POST /peep, should return 400 when data is incomplete", async () => {
         const res = await chai.request(app)
-            .post('/')
+            .post('/peep')
             .send({ firstName: "Bryan", peepCreatedTime: "2022-06-24T15:35:24Z" });
 
         expect(res).to.have.status(400)
