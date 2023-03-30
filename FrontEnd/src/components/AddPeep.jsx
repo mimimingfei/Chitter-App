@@ -20,17 +20,18 @@ const AddPeep = ({updatePeeps}) => {
         peepContent,
         peepCreatedTime: new Date().toISOString()
       };
-      const res = await axios.post('http://localhost:4000',peepData)
+      const res = await axios.post('http://localhost:4000/peep',peepData)
       console.log(res.data);
       alert("Peep posted!");
       setPeepContent('');
       updatePeeps();
-      navigate('/')
+      navigate('/peep')
     } catch (error) {
       console.error('Peep failed:', error);
       alert("Peep failed");
     }
   };
+
 
 
   return (

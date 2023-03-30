@@ -11,7 +11,7 @@ const AllPeeps = ({peeps}) => {
 
   const getPeepsData = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/`);
+      const res = await axios.get(`http://localhost:4000/peep`);
       setAllPeeps(res.data);
     } catch (error) {
       console.log(error.message);

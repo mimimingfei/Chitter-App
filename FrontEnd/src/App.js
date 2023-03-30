@@ -5,6 +5,8 @@ import Login from './components/Login.jsx';
 import AddPeep from "./components/AddPeep.jsx";
 import AllPeeps from "./components/AllPeeps.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Home from './components/Home.jsx'
+import Logout from "./components/Logout.jsx";
 import axios from "axios";
 
 function App() {
@@ -26,10 +28,12 @@ function App() {
 
   return (
     <Router>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<><Navbar/><AddPeep updatePeeps={updatePeeps}/><AllPeeps peeps={peeps} updatePeeps={updatePeeps}/></>} />
-        <Route path="/signup" element={<><Navbar/><Signup/></>} />
-        <Route path="/login" element={<><Navbar/><Login setLoggedIn={setLoggedIn} setUser={setUser}/></>} />
+        <Route path="/" element={<><Home/><Navbar/></>}/>
+        <Route path="/peep" element={<><AddPeep updatePeeps={updatePeeps}/><AllPeeps peeps={peeps} updatePeeps={updatePeeps}/><Logout/></>} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/login" element={<><Login setLoggedIn={setLoggedIn} setUser={setUser}/></>} />
       </Routes>
     </Router> 
 );

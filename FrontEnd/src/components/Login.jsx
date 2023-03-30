@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from "./Navbar/Navbar.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -24,13 +25,15 @@ export default function Login() {
       const res = await axios.post('http://localhost:4000/login', user);
       setUser({ email: ``, password: `` });
       alert("Login successful. You can now post peeps!")
-      navigate('/')
+      navigate('/peep')
     } catch (error) {
       console.error('Login failed:', error);
       alert("Login failed");
     }
   }
   
+
+
   return (
     <div className='d-flex justify-content-center align-items-center my-5'>
       <Form className="w-50">
@@ -50,5 +53,4 @@ export default function Login() {
          <p>Not a user yet? <Link to="/signup">Sign up</Link></p>
       </Form>
     </div>
-  );
-}
+    )};
